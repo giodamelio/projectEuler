@@ -101,5 +101,9 @@ app.controller("ScriptController", ["$scope", "Problems", function($scope, Probl
     $scope.changeProblem = function() {
         $scope.setSelectedProblem($scope.problemNumber);
     };
+
+    $scope.refresh = function() {
+        $scope.setSelectedProblem($scope.problemNumber);
+    };
 }]);
 
