@@ -36,8 +36,11 @@
             id="commandBar"
             class="row no-gutter bg-monokai">
             <div class="col-md-6 full-height">
-                <select class="v-center margin-10-left">
-                    <option value=1"">Problem #1</option>
+                <select
+                    ng-model="problemNumber"
+                    ng-change="changeProblem()"
+                    ng-options="problem as (problem | formatName) for problem in problems"
+                    class="v-center margin-10-left">
                 </select>
                 <button
                     type="button"

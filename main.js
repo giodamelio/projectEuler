@@ -21,8 +21,33 @@ var app = angular.module("projectEuler", ["ui.codemirror"]);
     };
 })();
 
+// Get our probems
+app.factory("Problems", ["$http", function($http) {
+    return {
+        getCompletedProblems: function(callback) {
+            $http.get("problems/completed.txt")
+                .success(function(data) {
+                    callback(data.trim().split("\n"));
+                });
+        },
+        getProblem: function(number, callback) {
+            $http.get("problems/" + number + ".js")
+                .success(function(data) {
+                    callback(data);
+                });
+        }
+    };
+}]);
+
+// Format the problem names nicely
+app.filter("formatName", function() {
+    return function(input) {
+        return "Problem #" + input;
+    };
+});
+
 // Script controller
-app.controller("ScriptController", ["$scope", function($scope) {
+app.controller("ScriptController", ["$scope", "Problems", function($scope, Problems) {
     // Our codemirror options
     $scope.editorOptions = {
         theme: "monokai",
@@ -35,6 +60,46 @@ app.controller("ScriptController", ["$scope", function($scope) {
     // Run the current code
     $scope.run = function() {
         eval($scope.code);
+    };
+    
+    // Get completed problems
+    $scope.problems = [];
+    Problems.getCompletedProblems(function(problems) {
+        $scope.problems = problems;
+
+        // Select to the location.hash or problem #1 by default
+        if (location.hash === "") {
+            $scope.setSelectedProblem(1);
+        } else {
+            $scope.setSelectedProblem(location.hash.slice(1));
+        }
+    });
+
+    // Set selected problem
+    $scope.setSelectedProblem = function(number) {
+        // Set the select box
+        $scope.problemNumber = $scope.problems[$scope.problems.indexOf(number.toString())];
+
+        // Set the editor contents
+        Problems.getProblem(number, function(script) {
+            $scope.code = script;
+        });
+
+        // Clear the log
+        document.getElementById("log").innerHTML = "";
+
+        // Set the hash
+        location.hash = number;
+    };
+
+    // Change the problem when the hash changes
+    window.onhashchange = function() {
+        $scope.setSelectedProblem(location.hash.slice(1));
+    };
+
+    // Change the problem when the select is changes
+    $scope.changeProblem = function() {
+        $scope.setSelectedProblem($scope.problemNumber);
     };
 }]);
 
