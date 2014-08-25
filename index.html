@@ -1,1 +1,20 @@
-<b>Hello World</b>
+<!DOCTYPE html>
+<html lang="en" ng-app="projectEuler">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+<body>
+    <div ng-controller="ScriptController">
+        <h1>Hello {{name}}</h1>
+        <input type="text" ng-model="name">
+    </div>
+
+    <!-- Angular -->
+    <script src="bower_components/angular/angular.min.js"></script>
+
+    <!-- My JS -->
+    <script src="main.js"></script>
+</body>
+</html>
+
