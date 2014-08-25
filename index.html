@@ -28,14 +28,17 @@
                     ui-codemirror-opts="editorOptions"
                     class="full-height"></div>
             </div>
-            <div class="col-md-6 full-height bg-monokai">
-            
-            </div>
+            <div
+                id="log"
+                class="col-md-6 full-height bg-monokai"></div>
         </div>
         <div
             id="commandBar"
             class="row no-gutter bg-monokai">
             <div class="col-md-6 full-height">
+                <select class="v-center margin-10-left">
+                    <option value=1"">Problem #1</option>
+                </select>
                 <button
                     type="button"
                     ng-click="run()"

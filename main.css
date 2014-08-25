@@ -54,9 +54,12 @@ html, body, .container {
 	transform: translateY(-50%);
 }
 
-/* Set left margin to 10px */
+/* Give a bit of margin */
 .margin-10-right {
     margin-right: 10px;
+}
+.margin-10-left {
+    margin-left: 10px;
 }
 
 /* Make the body the page height - 50px */
@@ -69,5 +72,20 @@ html, body, .container {
 /* Make the command bar 50px tall */
 #commandBar {
     height: 50px;
+}
+
+/* Style the log */
+#log {
+        overflow-y: auto;
+}
+#log > pre {
+    color: #d0d0d0;
+    background-color: #272822;
+    border-radius: 0;
+    border-bottom: 1px solid #d0d0d0;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    margin: 0;
 }
 
