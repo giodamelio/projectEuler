@@ -24,6 +24,7 @@
             <div class="col-md-6 full-height bg-monokai border-right">
                 <div
                     ui-codemirror
+                    ng-model="code"
                     ui-codemirror-opts="editorOptions"
                     class="full-height"></div>
             </div>
@@ -37,6 +38,7 @@
             <div class="col-md-6 full-height">
                 <button
                     type="button"
+                    ng-click="run()"
                     class="btn btn-sm btn-success pull-right v-center margin-10-right">Run</button>
             </div>
         </div>
