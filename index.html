@@ -2,16 +2,55 @@
 <html lang="en" ng-app="projectEuler">
 <head>
     <meta charset="UTF-8">
-    <title>Hello World</title>
+    <title>Project Euler</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Codemirror -->
+    <link rel="stylesheet" href="bower_components/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="bower_components/codemirror/theme/monokai.css">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div ng-controller="ScriptController">
-        <h1>Hello {{name}}</h1>
-        <input type="text" ng-model="name">
+    <div
+        ng-controller="ScriptController"
+        class="container">
+        <div 
+            id="body"
+            class="row border-bottom no-gutter">
+            <div class="col-md-6 full-height bg-monokai border-right">
+                <div
+                    ui-codemirror
+                    ui-codemirror-opts="editorOptions"
+                    class="full-height"></div>
+            </div>
+            <div class="col-md-6 full-height bg-monokai">
+            
+            </div>
+        </div>
+        <div
+            id="commandBar"
+            class="row no-gutter bg-monokai">
+            <div class="col-md-6 full-height">
+                <button
+                    type="button"
+                    class="btn btn-sm btn-success pull-right v-center margin-10-right">Run</button>
+            </div>
+        </div>
     </div>
 
     <!-- Angular -->
     <script src="bower_components/angular/angular.min.js"></script>
+
+    <!-- Codemirror -->
+    <script src="bower_components/codemirror/lib/codemirror.js"></script>
+    <script src="bower_components/codemirror/mode/javascript/javascript.js"></script>
+
+    <!-- Angular-ui codemirror --> 
+    <script src="bower_components/angular-ui-codemirror/ui-codemirror.min.js"></script>
 
     <!-- My JS -->
     <script src="main.js"></script>

@@ -1,0 +1,73 @@
+/* Set parent elements to 100% height */
+html, body, .container {
+    height: 100%;
+}
+
+/* Set element height to 100% */
+.full-height {
+    height: 100%
+}
+
+/* Make our editor 100% the height of its parent */
+.CodeMirror {
+    height: 100%;
+}
+
+/* Override our container to make it 100% wide */
+.container {
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Set background to monokai color */
+.bg-monokai {
+    background: #272822;
+}
+
+/* Give the element a border */
+.border-right {
+    border-right: 1px solid #d0d0d0;
+}
+.border-bottom {
+    border-bottom: 1px solid #d0d0d0;
+}
+
+/* Make a row with no gutter */
+.no-gutter [class*="-6"] {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+.no-gutter {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+/* Verticly center */
+.v-center {
+    position: relative;
+	top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+/* Set left margin to 10px */
+.margin-10-right {
+    margin-right: 10px;
+}
+
+/* Make the body the page height - 50px */
+#body {
+    height: calc(100% - 1px - 50px); /* IE9+ and future browsers */
+    height: -moz-calc(100% - 1px - 50px); /* Firefox */
+    height: -webkit-calc(100% - 1px - 50px); /* Chrome, Safari */
+}
+
+/* Make the command bar 50px tall */
+#commandBar {
+    height: 50px;
+}
+
