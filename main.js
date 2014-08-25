@@ -67,6 +67,7 @@ app.controller("ScriptController", ["$scope", "Problems", function($scope, Probl
 
     // Run the current code
     $scope.run = function() {
+        console.log("Running Problem #" + $scope.problemNumber + "...");
         eval($scope.code);
     };
     
