@@ -5,17 +5,25 @@ var app = angular.module("projectEuler", ["ui.codemirror"]);
 (function () {
     var old = console.log;
     var logger = document.getElementById("log");
-    console.log = function (message) {
+    console.log = function() {
+        // Turn arguments into an array
+        var args = Array.prototype.slice.call(arguments);
+
         // Log it to the console
-        old.apply(this, arguments);
+        old.apply(this, args);
 
-        // Log it to the outpur pane
-        if (typeof message === "string" || typeof message === "number") {
-            logger.innerHTML += "<pre>" + message + "</pre>";
-        } else if (typeof message === "object") {
-            logger.innerHTML += "<pre>" + JSON.stringify(message, null, "    ") + "</pre>";
-        }
-
+        // Log it to the output pane
+        var message = args.map(function(arg) {
+            if (typeof arg === "object") {
+                return JSON.stringify(arg, null, "    ") + "\n";
+            } else {
+                return arg + "\n";
+            }
+        });
+        message.unshift("<pre>");
+        message.push("</pre>");
+        logger.innerHTML += message.join("");
+    
         // Scroll the output pane
         logger.scrollTop = logger.scrollHeight;
     };
