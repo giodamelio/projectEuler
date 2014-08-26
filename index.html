@@ -37,15 +37,19 @@
             class="row no-gutter bg-monokai">
             <div class="col-md-6 full-height">
                 <select
-                    ng-model="problemNumber"
+                    ng-model="currentProblem"
                     ng-change="changeProblem()"
-                    ng-options="problem as (problem | formatName) for problem in problems"
+                    ng-options="problem as (problem.number | formatName) for problem in problems"
                     class="v-center margin-10-left">
                 </select>
                 <button
                     type="button"
                     ng-click="run()"
                     class="btn btn-sm btn-success pull-right v-center margin-10-right">Run</button>
+                <button
+                    type="button"
+                    ng-click="runAndCheck()"
+                    class="btn btn-sm btn-success pull-right v-center margin-10-right">Run &amp; Check Answer</button>
                 <button
                     type="button"
                     ng-click="refresh()"

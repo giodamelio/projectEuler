@@ -26,6 +26,32 @@ var app = angular.module("projectEuler", ["ui.codemirror"]);
     
         // Scroll the output pane
         logger.scrollTop = logger.scrollHeight;
+
+        return message[1];
+    };
+    console.answer = function() {
+        // Turn arguments into an array
+        var args = Array.prototype.slice.call(arguments);
+
+        var colorClass = args.shift();
+
+        // Log it to the console
+        old.apply(this, args);
+
+        // Log it to the output pane
+        var message = args.map(function(arg) {
+            if (typeof arg === "object") {
+                return JSON.stringify(arg, null, "    ") + "\n";
+            } else {
+                return arg + "\n";
+            }
+        });
+        message.unshift("<pre class='" + colorClass + "'>");
+        message.push("</pre>");
+        logger.innerHTML += message.join("");
+    
+        // Scroll the output pane
+        logger.scrollTop = logger.scrollHeight;
     };
 })();
 
@@ -35,7 +61,13 @@ app.factory("Problems", ["$http", function($http) {
         getCompletedProblems: function(callback) {
             $http.get("problems/completed.txt")
                 .success(function(data) {
-                    callback(data.trim().split("\n"));
+                    callback(data.trim().split("\n").map(function(problem) {
+                        problem = problem.split(",");
+                        return {
+                            number: problem[0],
+                            answer: problem[1]
+                        };
+                    }));
                 });
         },
         getProblem: function(number, callback) {
@@ -67,8 +99,19 @@ app.controller("ScriptController", ["$scope", "Problems", function($scope, Probl
 
     // Run the current code
     $scope.run = function() {
-        console.log("Running Problem #" + $scope.problemNumber + "...");
+        console.log("Running Problem #" + $scope.currentProblem.number + "...");
         eval($scope.code);
+    };
+
+    // Run the current code and check answer
+    $scope.runAndCheck = function() {
+        console.log("Running Problem #" + $scope.currentProblem.number + "...");
+        var result = eval($scope.code);
+        if (result.trim() == $scope.currentProblem.answer.trim()) {
+            console.answer("correct", result.trim() + " is correct.");
+        } else {
+            console.answer("incorrect", result.trim() + " is incorrect");
+        }
     };
     
     // Get completed problems
@@ -84,10 +127,19 @@ app.controller("ScriptController", ["$scope", "Problems", function($scope, Probl
         }
     });
 
+    // Find the index of an object by property in an array
+    var indexOfWithAttr = function(array, attr, value) {
+        for(var i = 0; i < array.length; i += 1) {
+            if(array[i][attr] === value) {
+                return i;
+            }
+        }
+    };
+
     // Set selected problem
     $scope.setSelectedProblem = function(number) {
         // Set the select box
-        $scope.problemNumber = $scope.problems[$scope.problems.indexOf(number.toString())];
+        $scope.currentProblem = $scope.problems[indexOfWithAttr($scope.problems, "number", number.toString())];
 
         // Set the editor contents
         Problems.getProblem(number, function(script) {
@@ -108,11 +160,11 @@ app.controller("ScriptController", ["$scope", "Problems", function($scope, Probl
 
     // Change the problem when the select is changes
     $scope.changeProblem = function() {
-        $scope.setSelectedProblem($scope.problemNumber);
+        $scope.setSelectedProblem($scope.currentProblem.number);
     };
 
     $scope.refresh = function() {
-        $scope.setSelectedProblem($scope.problemNumber);
+        $scope.setSelectedProblem($scope.currentProblem.number);
     };
 }]);
 

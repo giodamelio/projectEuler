@@ -88,4 +88,12 @@ html, body, .container {
     border-left: none;
     margin: 0;
 }
+/* Answer is correct */
+#log > pre.correct {
+    color: green;
+}
+/* Answer is incorrect */
+#log > pre.incorrect {
+    color: red;
+}
 
