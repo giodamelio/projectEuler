@@ -8,21 +8,8 @@
     By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 */
 
-// Get all the fibonacci less then n
-var fib = function(n) {
-    var fibSequence = [];
-    var recursiveFinder = function (a, b) {
-        fibSequence.push(a);
-        if (b < n) {
-            recursiveFinder(b, a + b);
-        }
-    };
-    recursiveFinder(0, 1);
-    return fibSequence;
-};
-
 // Sum all the even fibonacci numbers below four million.
-var fibs = fib(4000000);
+var fibs = mathlib.fib(4000000);
 var sum = 0;
 for (var i = 0; i < fibs.length; i++) {
     if (fibs[i] % 2 === 0) {
