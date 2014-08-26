@@ -77,4 +77,28 @@
         }
         return result;
     };
+
+    // Test to see if a number is prime
+    exports.isPrime = function(n) {
+        var sqrtN = Math.sqrt(n);
+        for (var i = 2; i <= sqrtN; i++) {
+            if (n % i === 0) {
+                return false;
+            }
+        }
+        return true;
+    };
+
+    // Get first n primes
+    exports.firstNPrimes = function(n) {
+        var primes = [];
+        var a = 2;
+        while (primes.length < n) {
+            if (exports.isPrime(a)) {
+                primes.push(a);
+            }
+            a++;
+        }
+        return primes;
+    };
 })(typeof exports === "undefined"? this.mathlib={}: exports);
