@@ -1,4 +1,7 @@
+#![feature(core)]
+
 use std::num::Float;
+use std::iter::order::equals;
 
 // Get all the factors of a number
 pub fn factors(num: i64) -> Vec<i64> {
@@ -30,5 +33,14 @@ pub fn is_prime(num: i64) -> bool {
         }
     }
     return true;
+}
+
+// Test is a number is a palindrome
+pub fn is_palindrome(num: i64) -> bool {
+    let string = num.to_string();
+    let bytes = string.as_bytes();
+    let iter = bytes.iter();
+    let half = bytes.len() / 2;
+    equals(iter.clone().take(half), iter.clone().rev().take(half))
 }
 
