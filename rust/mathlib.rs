@@ -3,6 +3,7 @@
 use std::num::Float;
 use std::iter::order::equals;
 use std::num::SignedInt;
+use std::num::Int;
 
 // Get all the factors of a number
 pub fn factors(num: i64) -> Vec<i64> {
@@ -75,5 +76,10 @@ pub fn greatest_commen_divisor(a: i64, b: i64) -> i64 {
 // Find the least commen multiple of two numbers
 pub fn least_commen_multiple(a: i64, b: i64) -> i64 {
     (a * b) / greatest_commen_divisor(a, b)
+}
+
+// Test if three numbers form a pythagorean triplet
+pub fn is_pythagorean_triplet(a: i64, b: i64, c: i64) -> bool {
+    a.pow(2) + b.pow(2) == c.pow(2)
 }
 
