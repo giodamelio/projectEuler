@@ -25,14 +25,32 @@ pub fn prime_factors(num: i64) -> Vec<i64> {
 }
 
 // Test if a number is prime or not
-pub fn is_prime(num: i64) -> bool {
-    let max = (num as f64).sqrt().ceil() as i64;
-    for i in 2..max {
-        if num % i == 0 {
-            return false;
+pub fn is_prime(n: i64) -> bool {
+    if n == 2 {
+        return true;
+    }
+    if n % 2 == 0 || n < 3 {
+        return false;
+    }
+    for i in range(3i64, ((n as f64).sqrt() as i64) + 1) {
+        if n % i == 0 {
+            return false; 
         }
     }
-    return true;
+    true
+}
+
+#[test]
+fn test_is_prime() {
+    let primes = [2, 3, 5, 7, 11, 13, 6977];
+    for n in primes.iter() {
+        assert!(is_prime(*n));
+    }
+
+    let not_primes = [4, 6, 8, 10, 12, 14, 15, 1005];
+    for n in not_primes.iter() {
+        assert!(!is_prime(*n));
+    }
 }
 
 // Test is a number is a palindrome
