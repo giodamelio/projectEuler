@@ -2,6 +2,7 @@
 
 use std::num::Float;
 use std::iter::order::equals;
+use std::num::SignedInt;
 
 // Get all the factors of a number
 pub fn factors(num: i64) -> Vec<i64> {
@@ -60,5 +61,19 @@ pub fn is_palindrome(num: i64) -> bool {
     let iter = bytes.iter();
     let half = bytes.len() / 2;
     equals(iter.clone().take(half), iter.clone().rev().take(half))
+}
+
+// Find the greatest commen divisor
+pub fn greatest_commen_divisor(a: i64, b: i64) -> i64 {
+    if a == 0 {
+        b.abs()
+    } else {
+        greatest_commen_divisor(b % a, a)
+    }
+}
+
+// Find the least commen multiple of two numbers
+pub fn least_commen_multiple(a: i64, b: i64) -> i64 {
+    (a * b) / greatest_commen_divisor(a, b)
 }
 
