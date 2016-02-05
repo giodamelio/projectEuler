@@ -4,6 +4,7 @@ module Mathlib
 , isPalindrome
 , greatestCommonDivisor
 , leastCommonMultiple
+, primes
 ) where
 
 fibSeq :: (Integral a) => [a]
@@ -28,3 +29,7 @@ greatestCommonDivisor a b = greatestCommonDivisor b (a `mod` b)
 
 leastCommonMultiple :: (Integral a) => a -> a -> a
 leastCommonMultiple a b = (a * b) `div` (greatestCommonDivisor a b)
+
+primes :: (Integral a) => [a]
+primes = sieve [2..]
+  where sieve (p:xs) = p : sieve [x | x <- xs, x `mod` p > 0]
