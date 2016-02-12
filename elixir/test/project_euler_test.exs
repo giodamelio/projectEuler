@@ -1,6 +1,7 @@
 defmodule ProjectEulerTest do
   use ExUnit.Case, async: true
   doctest ProjectEuler.Mathlib
+  doctest ProjectEuler.Mathlib.Prime
 
   test "Problem 1" do
     assert ProjectEuler.P0001.solve(1000) == 233168
@@ -24,5 +25,9 @@ defmodule ProjectEulerTest do
 
   test "Problem 6" do
     assert ProjectEuler.P0006.solve(100) == 25164150
+  end
+
+  test "Problem 7" do
+    assert ProjectEuler.P0007.solve(10001) == 104743
   end
 end

@@ -74,4 +74,42 @@ defmodule ProjectEuler.Mathlib do
   def least_common_multiple(a, b) do
     div(a * b, greatest_common_divisor(a, b))
   end
+
+  defmodule Prime do
+    @moduledoc """
+    A module for dealing with prime numbers
+    """
+
+    @doc """
+    Find the nth prime
+
+    ## Example
+    iex> ProjectEuler.Mathlib.Prime.nth(10)
+    29
+    """
+    def nth(count) do
+      Stream.iterate(2, &next_prime/1)
+        |> Enum.take(count)
+        |> List.last
+    end
+
+    @doc """
+    Find the next prime
+
+    ## Example
+    iex> ProjectEuler.Mathlib.Prime.next_prime(7)
+    11
+    iex> ProjectEuler.Mathlib.Prime.next_prime(14)
+    17
+    """
+    def next_prime(n) do
+      n = n + 1
+
+      if ProjectEuler.Mathlib.prime_factors(n) == [n] do
+        n
+      else
+        next_prime(n)
+      end
+    end
+  end
 end
