@@ -12,4 +12,8 @@ defmodule ProjectEulerTest do
   test "Problem 3" do
     assert ProjectEuler.P0003.solve(600851475143) == 6857
   end
+
+  test "Problem 4" do
+    assert ProjectEuler.P0004.solve(999) == 906609
+  end
 end

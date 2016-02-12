@@ -27,4 +27,12 @@ defmodule ProjectEuler.Mathlib do
       true                -> prime_factors(num, next + 2)
     end |> Enum.uniq
   end
+
+  @doc """
+  Check if a number is a palindrome
+  """
+  def is_palindrome(num) do
+    string = Integer.to_string num
+    string == String.reverse string
+  end
 end
