@@ -1,5 +1,6 @@
 defmodule ProjectEulerTest do
   use ExUnit.Case, async: true
+  doctest ProjectEuler.Mathlib
 
   test "Problem 1" do
     assert ProjectEuler.P0001.solve(1000) == 233168
