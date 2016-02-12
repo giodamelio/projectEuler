@@ -21,4 +21,8 @@ defmodule ProjectEulerTest do
   test "Problem 5" do
     assert ProjectEuler.P0005.solve(20) == 232792560
   end
+
+  test "Problem 6" do
+    assert ProjectEuler.P0006.solve(100) == 25164150
+  end
 end
