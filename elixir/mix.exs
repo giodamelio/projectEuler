@@ -14,8 +14,11 @@ defmodule ProjectEuler.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: applications(Mix.env)]
   end
+
+  defp applications(:dev), do: applications(:all) ++ [:exsync]
+  defp applications(_all), do: [:logger]
 
   # Dependencies can be Hex packages:
   #
@@ -27,6 +30,6 @@ defmodule ProjectEuler.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:exsync, "~> 0.1", only: :dev}]
   end
 end
