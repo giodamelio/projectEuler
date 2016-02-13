@@ -112,4 +112,17 @@ defmodule ProjectEuler.Mathlib do
       end
     end
   end
+
+  @doc """
+  Check if a set of three numbers is a Pythagorean triplet
+
+  ## Example
+  iex> ProjectEuler.Mathlib.is_pythagorean_triplet(3, 4, 5)
+  true
+  iex> ProjectEuler.Mathlib.is_pythagorean_triplet(1, 2, 3)
+  false
+  """
+  def is_pythagorean_triplet(a, b, c) do
+    (a * a) + (b * b) == (c * c)
+  end
 end
