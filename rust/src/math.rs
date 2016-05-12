@@ -1,10 +1,3 @@
-#![feature(core)]
-
-use std::num::Float;
-use std::iter::order::equals;
-use std::num::SignedInt;
-use std::num::Int;
-
 // Get all the factors of a number
 pub fn factors(num: i64) -> Vec<i64> {
     let mut factors: Vec<i64> = Vec::new();
@@ -34,7 +27,8 @@ pub fn is_prime(n: i64) -> bool {
     if n % 2 == 0 || n < 3 {
         return false;
     }
-    for i in range(3i64, ((n as f64).sqrt() as i64) + 1) {
+    let max = ((n as f64).sqrt() as i64) + 1;
+    for i in 3i64..max {
         if n % i == 0 {
             return false; 
         }
@@ -61,7 +55,13 @@ pub fn is_palindrome(num: i64) -> bool {
     let bytes = string.as_bytes();
     let iter = bytes.iter();
     let half = bytes.len() / 2;
-    equals(iter.clone().take(half), iter.clone().rev().take(half))
+    let first_half = iter.clone().take(half);
+    let second_half = iter.clone().rev().take(half);
+
+    // Zip them togather and make sure they match
+    first_half
+        .zip(second_half)
+        .all(|(a, b)| a == b)
 }
 
 // Find the greatest commen divisor
