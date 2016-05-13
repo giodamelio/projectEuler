@@ -5,6 +5,7 @@ macro_rules! assert_answer {
         use std::io::{BufReader, BufRead};
         use std::fs::File;
         use std::path::Path;
+        use std::process::exit;
 
         // Read answers from a file
         let answers_file = File::open(
@@ -26,11 +27,21 @@ macro_rules! assert_answer {
 
         // Make sure we have the answer
         if answers.len() < problem_number {
-            panic!("No answer stored. Please add it to the file");
+            println!("No answer stored. Please add it to the file");
+            exit(1);
+        }
+
+        // Get the answer from the vector
+        let answer = answers[problem_number - 1];
+
+        // If the answer is -1 send error
+        if answer == -1 {
+            println!("Answer not discovered yet");
+            exit(1);
         }
 
         // Compare input to answer list
-        if $left == answers[problem_number - 1] {
+        if $left == answer {
             println!(
                 "{}{} is the correct answer for problem {}{}",
                 "\x1b[0;32m", // Make the text green
