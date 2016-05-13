@@ -26,9 +26,10 @@ pub fn factors(num: i64) -> Vec<i64> {
 /// assert_eq!(math::prime_factors(187), vec!(11, 17));
 /// ```
 pub fn prime_factors(num: i64) -> Vec<i64> {
-    let mut f = factors(num);
-    f.retain(|&x|is_prime(x));
-    f
+    factors(num)
+        .iter().cloned()
+        .filter(|&x| is_prime(x))
+        .collect()
 }
 
 /// Test if a number is prime or not
