@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate math;
+
 fn main() {
     let mut sum = 0;
     let mut current = 1;
@@ -11,6 +14,7 @@ fn main() {
             sum += current;
         }
     }
-    println!("{}", sum);
+
+    assert_answer!(sum);
 }
 

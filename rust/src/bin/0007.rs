@@ -1,3 +1,4 @@
+#[macro_use]
 extern crate math;
 
 fn main() {
@@ -6,8 +7,8 @@ fn main() {
         .filter(|&n| math::is_prime(n))
 
         // Get the 10,001st prime
-        .skip(10000).next();
+        .skip(10000).next().unwrap();
 
-    println!("{}", ten_thousandth_and_first_prime.expect("HAHA"));
+    assert_answer!(ten_thousandth_and_first_prime);
 }
 

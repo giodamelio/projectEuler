@@ -1,3 +1,51 @@
+/// Check if the answer is correct
+#[macro_export]
+macro_rules! assert_answer {
+    ($left:expr) => (
+        let answers: Vec<i64> = vec![
+            233168,
+            4613732,
+            6857,
+            906609,
+            232792560,
+            25164150,
+            104743,
+            23514624000,
+            31875000,
+            142913828922,
+        ];
+        
+        // Get the number of the problem we are working on
+        let problem_number = module_path!()
+            // Convert it into a number
+            .parse::<usize>().unwrap();
+
+        // Make sure we have the answer
+        if answers.len() < problem_number {
+            panic!("No answer stored. Please add it to the macro");
+        }
+
+        // Compare input to answer list
+        if $left == answers[problem_number - 1] {
+            println!(
+                "{}{} is the correct answer for problem {}{}",
+                "\x1b[0;32m", // Make the text green
+                $left,
+                problem_number,
+                "\x1b[0m" // Stop the color
+            );
+        } else {
+            println!(
+                "{}{} is not the correct answer for problem {}{}",
+                "\x1b[0;31m", // Make the text red
+                $left, 
+                problem_number,
+                "\x1b[0m" // Stop the color
+            );
+        }
+    )
+}
+
 /// Get all the factors of a number
 ///
 /// # Examples

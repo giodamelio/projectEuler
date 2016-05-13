@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate math;
+
 fn main() {
     let mut sum = 0;
     for i in 1..1000 {
@@ -7,6 +10,7 @@ fn main() {
             sum += i;
         }
     }
-    println!("{}", sum);
+
+    assert_answer!(sum);
 }
 

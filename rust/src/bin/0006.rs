@@ -1,5 +1,8 @@
 #![feature(iter_arith)]
 
+#[macro_use]
+extern crate math;
+
 use std::iter::Iterator;
 
 fn main() {
@@ -17,6 +20,6 @@ fn main() {
         // Square them
         .pow(2);
 
-    println!("{}", square_of_sum - sum_of_squares);
+    assert_answer!(square_of_sum - sum_of_squares);
 }
 

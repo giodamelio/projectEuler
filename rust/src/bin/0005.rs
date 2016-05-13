@@ -1,3 +1,4 @@
+#[macro_use]
 extern crate math;
 
 fn main() {
@@ -5,6 +6,7 @@ fn main() {
     for n in 1..21 {
         biggest_divisible_number = math::least_commen_multiple(biggest_divisible_number, n);
     }
-    println!("{}", biggest_divisible_number);
+    
+    assert_answer!(biggest_divisible_number);
 }
 

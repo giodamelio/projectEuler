@@ -1,3 +1,4 @@
+#[macro_use]
 extern crate math;
 
 fn main() {
@@ -15,6 +16,6 @@ fn main() {
         }
     }
             
-    println!("{}", the_triplet);    
+    assert_answer!(the_triplet);
 }
 

@@ -1,3 +1,4 @@
+#[macro_use]
 extern crate math;
 
 fn main() {
@@ -10,6 +11,7 @@ fn main() {
             }
         }
     }
-    println!("{}", biggest);
+
+    assert_answer!(biggest);
 }
 

@@ -1,5 +1,6 @@
 #![feature(iter_arith)]
 
+#[macro_use]
 extern crate math;
 
 fn main() {
@@ -13,6 +14,6 @@ fn main() {
         // Add them up
         .sum();
 
-    println!("{}", sum_of_primes);
+    assert_answer!(sum_of_primes);
 }
 
