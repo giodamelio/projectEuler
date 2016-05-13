@@ -1,3 +1,5 @@
+#![feature(iter_arith)]
+
 /// Check if the answer is correct
 #[macro_export]
 macro_rules! assert_answer {
@@ -78,6 +80,7 @@ pub fn factors(num: i64) -> Vec<i64> {
         }
     }
     factors.sort();
+    factors.dedup();
     factors
 }
 
@@ -176,3 +179,48 @@ pub fn is_pythagorean_triplet(a: i64, b: i64, c: i64) -> bool {
     a.pow(2) + b.pow(2) == c.pow(2)
 }
 
+/// Return the nth triangle number
+///
+/// # Examples
+/// ```
+/// assert_eq!(math::nth_triangle_number(1), 1);
+/// assert_eq!(math::nth_triangle_number(8), 36);
+/// assert_eq!(math::nth_triangle_number(102), 5253);
+/// ```
+pub fn nth_triangle_number(n: usize) -> i64 {
+    (1..).take(n).sum()
+}
+
+/// Iterate over the triangle numbers
+///
+/// # Examples
+/// ```
+/// assert_eq!(
+///     math::triangle_numbers().take(4).collect::<Vec<i64>>(),
+///     vec!(1, 3, 6, 10)
+/// );
+/// ```
+pub struct TriangleNumbers {
+    current: i64,
+    index: i64,
+}
+
+impl Iterator for TriangleNumbers {
+    type Item = i64;
+
+    fn next(&mut self) -> Option<i64> {
+        let current = self.current;
+
+        self.current += self.index;
+        self.index += 1;
+
+        Some(current)
+    }
+}
+
+pub fn triangle_numbers() -> TriangleNumbers {
+    TriangleNumbers {
+        current: 1,
+        index: 2,
+    }
+}
