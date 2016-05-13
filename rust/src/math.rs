@@ -2,18 +2,22 @@
 #[macro_export]
 macro_rules! assert_answer {
     ($left:expr) => (
-        let answers: Vec<i64> = vec![
-            233168,
-            4613732,
-            6857,
-            906609,
-            232792560,
-            25164150,
-            104743,
-            23514624000,
-            31875000,
-            142913828922,
-        ];
+        use std::io::{BufReader, BufRead};
+        use std::fs::File;
+        use std::path::Path;
+
+        // Read answers from a file
+        let answers_file = File::open(
+            Path::new("../problems/answers.txt")
+        ).unwrap();
+
+        // Convert file to array of ints
+        let answers: Vec<i64> = BufReader::new(answers_file)
+            // Convert to iterator of lines
+            .lines().map(|x| x.unwrap())
+
+            // Parse Strings into ints
+            .map(|x| x.parse::<i64>().unwrap()).collect();
         
         // Get the number of the problem we are working on
         let problem_number = module_path!()
@@ -22,7 +26,7 @@ macro_rules! assert_answer {
 
         // Make sure we have the answer
         if answers.len() < problem_number {
-            panic!("No answer stored. Please add it to the macro");
+            panic!("No answer stored. Please add it to the file");
         }
 
         // Compare input to answer list
