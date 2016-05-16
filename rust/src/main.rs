@@ -1,8 +1,11 @@
 #![feature(iter_arith)]
 #![feature(inclusive_range_syntax)]
 #![feature(plugin)]
+#![feature(custom_attribute)]
 
 #![plugin(clippy)]
+
+extern crate num;
 
 use std::env;
 use std::process;
@@ -47,6 +50,7 @@ fn main() {
         10 => problems::p0010::solve(),
         11 => problems::p0011::solve(),
         12 => problems::p0012::solve(),
+        13 => problems::p0013::solve(),
         _ => {
             println!("Problem {} is not solved yet", number);
             process::exit(0);
