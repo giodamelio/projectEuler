@@ -6,13 +6,13 @@
 #![plugin(clippy)]
 
 extern crate num;
+extern crate math;
 
 use std::env;
 use std::process;
 
 #[macro_use]
 mod macros;
-mod math;
 mod problems;
 
 fn main() {
