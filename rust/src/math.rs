@@ -114,18 +114,6 @@ pub fn is_pythagorean_triplet(a: i64, b: i64, c: i64) -> bool {
     a.pow(2) + b.pow(2) == c.pow(2)
 }
 
-/// Return the nth triangle number
-///
-/// # Examples
-/// ```
-/// assert_eq!(math::nth_triangle_number(1), 1);
-/// assert_eq!(math::nth_triangle_number(8), 36);
-/// assert_eq!(math::nth_triangle_number(102), 5253);
-/// ```
-pub fn nth_triangle_number(n: usize) -> i64 {
-    (1..).take(n).sum()
-}
-
 /// Iterate over the triangle numbers
 ///
 /// # Examples
