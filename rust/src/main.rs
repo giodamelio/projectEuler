@@ -51,6 +51,7 @@ fn main() {
         11 => problems::p0011::solve(),
         12 => problems::p0012::solve(),
         13 => problems::p0013::solve(),
+        14 => problems::p0014::solve(),
         _ => {
             println!("Problem {} is not solved yet", number);
             process::exit(0);

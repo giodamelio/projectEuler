@@ -147,3 +147,50 @@ pub fn triangle_numbers() -> TriangleNumbers {
         index: 2,
     }
 }
+
+/// Iterate over the Collatz sequence for a given number
+///
+/// # Examples
+/// ```
+/// assert_eq!(
+///     math::collatz_sequence(13).collect::<Vec<i64>>(),
+///     vec![13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+/// );
+/// assert_eq!(
+///     math::collatz_sequence(22).collect::<Vec<i64>>(),
+///     vec![22, 11, 34, 17, 52, 26, 13, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+/// );
+/// ```
+pub struct CollatzSequence {
+    current: i64,
+    previous: i64,
+}
+
+impl Iterator for CollatzSequence {
+    type Item = i64;
+
+    fn next(&mut self) -> Option<i64> {
+        let current = self.current;
+
+        if current % 2 == 0 {
+            self.current = current / 2
+        } else {
+            self.current = 3 * current + 1
+        }
+
+        if self.previous == 1 {
+            return None;
+        }
+
+        self.previous = current;
+
+        Some(current)
+    }
+}
+
+pub fn collatz_sequence(n: i64) -> CollatzSequence {
+    CollatzSequence {
+        current: n,
+        previous: n,
+    }
+}
