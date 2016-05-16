@@ -1,5 +1,8 @@
 #![feature(iter_arith)]
 #![feature(inclusive_range_syntax)]
+#![feature(plugin)]
+
+#![plugin(clippy)]
 
 use std::env;
 use std::process;
