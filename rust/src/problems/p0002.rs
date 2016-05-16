@@ -14,4 +14,3 @@ pub fn solve() {
 
     assert_answer!(sum);
 }
-

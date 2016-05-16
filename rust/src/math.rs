@@ -28,7 +28,8 @@ pub fn factors(num: i64) -> Vec<i64> {
 /// ```
 pub fn prime_factors(num: i64) -> Vec<i64> {
     factors(num)
-        .iter().cloned()
+        .iter()
+        .cloned()
         .filter(|&x| is_prime(x))
         .collect()
 }
@@ -50,7 +51,7 @@ pub fn is_prime(n: i64) -> bool {
     let max = ((n as f64).sqrt() as i64) + 1;
     for i in 3i64..max {
         if n % i == 0 {
-            return false; 
+            return false;
         }
     }
     true
@@ -72,8 +73,7 @@ pub fn is_palindrome(num: i64) -> bool {
     let second_half = iter.clone().rev().take(half);
 
     // Zip them togather and make sure they match
-    first_half
-        .zip(second_half)
+    first_half.zip(second_half)
         .all(|(a, b)| a == b)
 }
 

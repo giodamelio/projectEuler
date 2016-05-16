@@ -10,4 +10,3 @@ pub fn solve() {
 
     assert_answer!(ten_thousandth_and_first_prime);
 }
-

@@ -19,7 +19,7 @@ macro_rules! assert_answer {
 
             // Parse Strings into ints
             .map(|x| x.parse::<i64>().unwrap()).collect();
-        
+
         // Get the number of the problem we are working on
         let module_path: &'static str = module_path!()
         let problem_number: usize = module_path
@@ -57,11 +57,10 @@ macro_rules! assert_answer {
             println!(
                 "{}{} is not the correct answer for problem {}{}",
                 "\x1b[0;31m", // Make the text red
-                $left, 
+                $left,
                 problem_number,
                 "\x1b[0m" // Stop the color
             );
         }
     )
 }
-

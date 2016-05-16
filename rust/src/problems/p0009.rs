@@ -12,7 +12,6 @@ pub fn solve() {
             }
         }
     }
-            
+
     assert_answer!(the_triplet);
 }
-

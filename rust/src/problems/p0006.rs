@@ -15,4 +15,3 @@ pub fn solve() {
 
     assert_answer!(square_of_sum - sum_of_squares);
 }
-
