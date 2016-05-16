@@ -1,7 +1,6 @@
-#[macro_use]
-extern crate math;
+use math;
 
-fn main() {
+pub fn solve() {
     let mut biggest_divisible_number = 1;
     for n in 1..21 {
         biggest_divisible_number = math::least_commen_multiple(biggest_divisible_number, n);

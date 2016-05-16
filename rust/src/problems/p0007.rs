@@ -1,7 +1,6 @@
-#[macro_use]
-extern crate math;
+use math;
 
-fn main() {
+pub fn solve() {
     let ten_thousandth_and_first_prime = (1..)
         // Keep only the prime ones
         .filter(|&n| math::is_prime(n))

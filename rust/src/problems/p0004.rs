@@ -1,7 +1,6 @@
-#[macro_use]
-extern crate math;
+use math;
 
-fn main() {
+pub fn solve() {
     let mut biggest = 0;
     for a in 1..1000 {
         for b in 1..1000 {

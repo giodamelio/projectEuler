@@ -1,7 +1,6 @@
-#[macro_use]
-extern crate math;
+use math;
 
-fn main() {
+pub fn solve() {
     let mut the_triplet = 0;
     'a: for a in 1..1000 {
         for b in 1..1000 {

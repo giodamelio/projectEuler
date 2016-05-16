@@ -1,7 +1,4 @@
-#[macro_use]
-extern crate math;
-
-fn main() {
+pub fn solve() {
     let mut sum = 0;
     let mut current = 1;
     let mut next = 1;

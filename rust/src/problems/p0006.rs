@@ -1,12 +1,4 @@
-#![feature(iter_arith)]
-#![feature(inclusive_range_syntax)]
-
-#[macro_use]
-extern crate math;
-
-use std::iter::Iterator;
-
-fn main() {
+pub fn solve() {
     let sum_of_squares: i64 = (1...100)
         // Square the number
         .map(|n: i64| n.pow(2))

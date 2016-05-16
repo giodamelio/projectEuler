@@ -1,9 +1,6 @@
-#![feature(iter_arith)]
+use math;
 
-#[macro_use]
-extern crate math;
-
-fn main() {
+pub fn solve() {
     let sum_of_primes: i64 = (1..)
         // Keep just the primes
         .filter(|&n| math::is_prime(n))

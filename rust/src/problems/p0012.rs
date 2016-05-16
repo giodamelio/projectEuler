@@ -1,7 +1,6 @@
-#[macro_use]
-extern crate math;
+use math;
 
-fn main() {
+pub fn solve() {
     for n in math::triangle_numbers() {
         let factors = math::factors(n);
 
