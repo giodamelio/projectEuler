@@ -11,7 +11,10 @@ from timeit import default_timer as timer
 LANGUAGES = {
     'rust': {
         'directory': 'rust/',
-        'command': 'cargo run --bin {0:04d}',
+        'command': [
+            'cargo build --bin {0:04d} --release',
+            './target/release/{0:04d}'
+        ],
         'list_completed': lambda:
             sorted([int(file[:-3]) for file in os.listdir('rust/src/bin/')]), 
     },
@@ -33,8 +36,29 @@ def run(language, number):
     # Change to the languages directory
     os.chdir(info['directory']);
 
+    # If commands is a list run all but the last one before the timer
+    if type(info['command']) == list:
+        command = info['command'][-1]
+        precommands = info['command'][:-1]
+
+        print('---- Running pre-commands ----')
+        for precommand in precommands:
+            output = subprocess.check_output(
+                shlex.split(precommand.format(number)))
+            sys.stdout.write(output.decode('ascii'))
+    else:
+        command = info['command']
+
+    # Print opening message
+    pre_run_message = '---- Running {} problem {} ----'.format(
+        args.language, args.number)
+    print(pre_run_message)
+
+    # Start our timer
+    start = timer()
+
     # Run the command
-    command = shlex.split(info['command'].format(number))
+    command = shlex.split(command.format(number))
     process = subprocess.Popen(command, stdout=subprocess.PIPE);
 
     # Print the output keeping track of the last line
@@ -43,6 +67,14 @@ def run(language, number):
         line = line.decode('ascii')
         lastline = line
         sys.stdout.write(line)
+
+    # Stop timer
+    end = timer()
+
+    # Print closing message
+    print('-' * len(pre_run_message))
+    print('{} problem {} run in {} seconds'
+          .format(args.language, args.number, end - start))
 
     return int(lastline)
 
@@ -69,15 +101,7 @@ if not args.number in completed_problems:
     sys.exit(1)
 
 # Run the problem
-pre_run_message = '---- Running {} problem {} ----'.format(
-    args.language, args.number)
-print(pre_run_message)
-start = timer()
 answer = run(args.language, args.number)
-end = timer()
-print('-' * len(pre_run_message))
-print('{} problem {} run in {} seconds'
-      .format(args.language, args.number, end - start))
 
 # Check to see if the answer is correct
 if ANSWERS[args.number - 1] == -1:
