@@ -1,6 +1,6 @@
-use math;
+extern crate math;
 
-pub fn solve() {
+fn main() {
     let ten_thousandth_and_first_prime = (1..)
         // Keep only the prime ones
         .filter(|&n| math::is_prime(n))
@@ -8,5 +8,5 @@ pub fn solve() {
         // Get the 10,001st prime
         .skip(10000).next().unwrap();
 
-    assert_answer!(ten_thousandth_and_first_prime);
+    println!("{}", ten_thousandth_and_first_prime);
 }

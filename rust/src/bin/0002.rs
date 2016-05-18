@@ -1,4 +1,4 @@
-pub fn solve() {
+fn main() {
     let mut sum = 0;
     let mut current = 1;
     let mut next = 1;
@@ -12,5 +12,5 @@ pub fn solve() {
         }
     }
 
-    assert_answer!(sum);
+    println!("{}", sum);
 }

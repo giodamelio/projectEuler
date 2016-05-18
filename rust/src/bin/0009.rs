@@ -1,6 +1,6 @@
-use math;
+extern crate math;
 
-pub fn solve() {
+fn main() {
     let mut the_triplet = 0;
     'a: for a in 1..1000 {
         for b in 1..1000 {
@@ -13,5 +13,5 @@ pub fn solve() {
         }
     }
 
-    assert_answer!(the_triplet);
+    println!("{}", the_triplet);
 }

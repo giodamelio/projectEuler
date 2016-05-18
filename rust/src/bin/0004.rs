@@ -1,6 +1,6 @@
-use math;
+extern crate math;
 
-pub fn solve() {
+fn main() {
     let mut biggest = 0;
     for a in 1..1000 {
         for b in 1..1000 {
@@ -11,5 +11,5 @@ pub fn solve() {
         }
     }
 
-    assert_answer!(biggest);
+    println!("{}", biggest);
 }

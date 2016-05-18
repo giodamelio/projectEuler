@@ -1,7 +1,8 @@
+extern crate num;
+
 use num::bigint::BigInt;
 use num::Zero;
 
-#[allow(needless_return)]
 fn numbers() -> Vec<BigInt> {
     vec!["37107287533902102798797998220837590246510135740250",
          "46376937677490009712648124896970078050417018260538",
@@ -108,7 +109,7 @@ fn numbers() -> Vec<BigInt> {
         .collect::<Vec<BigInt>>()
 }
 
-pub fn solve() {
+fn main() {
     let numbers: Vec<BigInt> = numbers();
 
     let sum = numbers.iter()
@@ -121,5 +122,5 @@ pub fn solve() {
         .parse::<i64>()
         .unwrap();
 
-    assert_answer!(first_ten_digits);
+    println!("{}", first_ten_digits);
 }

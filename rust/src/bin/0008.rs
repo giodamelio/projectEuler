@@ -1,4 +1,6 @@
-pub fn solve() {
+#![feature(iter_arith)]
+
+fn main() {
     let input: Vec<i64> =
         vec![7, 3, 1, 6, 7, 1, 7, 6, 5, 3, 1, 3, 3, 0, 6, 2, 4, 9, 1, 9, 2, 2, 5, 1, 1, 9, 6, 7,
              4, 4, 2, 6, 5, 7, 4, 7, 4, 2, 3, 5, 5, 3, 4, 9, 1, 9, 4, 9, 3, 4, 9, 6, 9, 8, 3, 5,
@@ -42,7 +44,7 @@ pub fn solve() {
         .max()
         .unwrap();
 
-    assert_answer!(largest_product);
+    println!("{}", largest_product);
 }
 
 // vim: set nowrap:

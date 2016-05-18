@@ -1,3 +1,7 @@
+extern crate num;
+
+use num::num_integer::Integer;
+
 /// Get all the factors of a number
 ///
 /// # Examples
@@ -192,5 +196,22 @@ pub fn collatz_sequence(n: i64) -> CollatzSequence {
     CollatzSequence {
         current: n,
         previous: n,
+    }
+}
+
+/// Get the factorial of a number
+///
+/// # Example
+/// ```
+/// assert_eq!(math::factorial(10), 3628800);
+/// assert_eq!(math::factorial(16), 20922789888000i64);
+/// ```
+pub fn factorial<T>(n: T) -> T
+    where T: Integer + Copy
+{
+    if n == T::zero() || n == T::one() {
+        T::one()
+    } else {
+        n * factorial(n - T::one())
     }
 }

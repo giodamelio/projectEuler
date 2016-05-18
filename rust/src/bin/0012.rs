@@ -1,11 +1,11 @@
-use math;
+extern crate math;
 
-pub fn solve() {
+fn main() {
     for n in math::triangle_numbers() {
         let factors = math::factors(n);
 
         if factors.len() > (500 - 2) {
-            assert_answer!(n);
+            println!("{}", n);
             break;
         }
     }

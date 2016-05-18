@@ -1,6 +1,8 @@
-use math;
+#![feature(iter_arith)]
 
-pub fn solve() {
+extern crate math;
+
+fn main() {
     let sum_of_primes: i64 = (1..)
         // Keep just the primes
         .filter(|&n| math::is_prime(n))
@@ -11,5 +13,5 @@ pub fn solve() {
         // Add them up
         .sum();
 
-    assert_answer!(sum_of_primes);
+    println!("{}", sum_of_primes);
 }
