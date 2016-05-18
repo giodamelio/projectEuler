@@ -9,7 +9,14 @@ LANGUAGES = {
     'rust': {
         'directory': 'rust/',
         'command': 'cargo run --bin {0:04d}',
-        'list_completed': lambda: sorted([int(file[:-3]) for file in os.listdir('rust/src/bin/')]), 
+        'list_completed': lambda:
+            sorted([int(file[:-3]) for file in os.listdir('rust/src/bin/')]), 
+    },
+    'javascript': {
+        'directory': 'javascript/',
+        'command': 'node {}.js',
+        'list_completed': lambda:
+            sorted([int(file[:-3]) for file in os.listdir('javascript/') if file != 'mathlib.js']), 
     },
 }
 
