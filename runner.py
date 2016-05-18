@@ -104,7 +104,7 @@ if not args.number in completed_problems:
 answer = run(args.language, args.number)
 
 # Check to see if the answer is correct
-if ANSWERS[args.number - 1] == -1:
+if len(ANSWERS) < args.number or ANSWERS[args.number - 1] == -1:
     print('No answer for problem {} is saved'.format(args.number))
     sys.exit(1)
 elif ANSWERS[args.number - 1] != answer:
