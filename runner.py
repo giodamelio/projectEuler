@@ -1,8 +1,11 @@
+#!/usr/bin/env python3
+
 import argparse
 import os
 import shlex
 import subprocess
 import sys
+from timeit import default_timer as timer
 
 # Tell the runner how to run each languages example
 LANGUAGES = {
@@ -69,8 +72,12 @@ if not args.number in completed_problems:
 pre_run_message = '---- Running {} problem {} ----'.format(
     args.language, args.number)
 print(pre_run_message)
+start = timer()
 answer = run(args.language, args.number)
+end = timer()
 print('-' * len(pre_run_message))
+print('{} problem {} run in {} seconds'
+      .format(args.language, args.number, end - start))
 
 # Check to see if the answer is correct
 if ANSWERS[args.number - 1] == -1:
