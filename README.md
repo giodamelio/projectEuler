@@ -1,6 +1,3 @@
-# Project Euler
+# Moved!
 
-My solutions to some of [Project Euler's](https://projecteuler.net) problems in various languages.
-
-![](https://projecteuler.net/profile/giod.png)
-
+See [here](https://github.com/giodamelio/code-challenges/tree/master/project_euler)
